@@ -57,6 +57,17 @@ class UserRepository {
       .eq('id', id)
     if (error) throw error
   }
+
+  async authenticate(email) {
+    console.log(email)
+    const { data, error } = await database
+      .from('usuario')
+      .select('id, senha')
+      .eq('email', email)
+      .single()
+    if (error) throw error
+    return data
+  }
 }
 
 export default new UserRepository();
