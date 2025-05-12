@@ -1,5 +1,10 @@
 ## BookTrack é uma api que permite usuários adicionar, atualizar e fazer review de livros
 
+## É possível testar o servidor pelo deploy, feito na seguinte url:
+```
+https://booktrack-0nku.onrender.com
+```
+
 ## Rotas disponíveis
 | Rotas |
 | ----- |
@@ -17,7 +22,8 @@
 | **delete /books/delete/:bookId**  |
 
 
-Como utilizar:
+## Caso queira criar sua própria api:
+
 ## Clone o repositório:
 ```
 git clone https://github.com/aarthuralveese/BookTrack.git
