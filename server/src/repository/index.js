@@ -1,4 +1,4 @@
 import UserRepository from "./userRepository.js";
-//import BookRepository from "./bookRepository.js";
+import BookRepository from "./bookRepository.js";
 
-export default UserRepository
+export { UserRepository, BookRepository }

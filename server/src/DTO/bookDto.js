@@ -1,32 +1,25 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-export const bookDto = z.discriminatedUnion("status", [
-  z.object({
-    status: z.literal("Lido", { required_error: "Status do livro obrigatório" }),
+export const bookDto = z.object({
+  titulo: z.string({
+    required_error: 'O nome é obrigatório',
+  })
+    .min(3, 'Mínimo de 3 letras')
+    .max(100, 'Máximo de 100 letras')
+    .regex(/^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/, {
+      message: 'O nome deve conter apenas letras',
+    }),
 
-    titulo: z.string()
-      .min(3, { message: "O nome tem que conter no mínimo 3 letras" })
-      .max(100, { message: "O nome não pode conter mais que 100 letras" }),
+  autor: z.string().optional(),
 
-    autor: z.string().optional(),
+  status: z.enum(['Lido', 'Lendo', 'Quero ler'], { required_error: 'Status obrigatório' }),
 
-    avaliacao: z.number().optional()
-      .min(1, { message: "Avaliação mínima é 1" })
-      .max(5, { message: "Avaliação máxima é 5" }),
+  avaliacao: z.number()
+    .min(1, 'Avaliação mínima é 1')
+    .max(5, 'Avaliação máxima é 5')
+    .optional(),
 
-    data_conclusao: z.string().optional(),
-  }),
-  z.object({
-    status: z.enum(["Quero ler", "Lendo"], { required_error: "Status do livro obrigatório" }),
-
-    titulo: z.string()
-      .min(3, { message: "O nome tem que conter no mínimo 3 letras" })
-      .max(100, { message: "O nome não pode conter mais que 100 letras" }),
-
-    autor: z.string().optional(),
-    avaliacao: z.undefined(),
-    data_conclusao: z.undefined(),
-  }),
-]);
+  data_conclusao: z.string().optional(),
+});
 
 export const updateBook = bookDto.partial()

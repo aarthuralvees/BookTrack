@@ -1,5 +1,5 @@
 import express from 'express'
-import UserRepository from '../repository/index.js'
+import { UserRepository } from '../repository/index.js'
 import jwt from 'jsonwebtoken'
 
 const authRouter = express.Router()
