@@ -51,7 +51,7 @@ class UserRepository {
   }
 
   async delete(id) {
-    const { error } = await supabase
+    const { error } = await database
       .from('usuario')
       .delete()
       .eq('id', id)

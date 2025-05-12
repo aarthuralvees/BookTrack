@@ -1,5 +1,5 @@
 import { userDto, updateUserDto } from "../DTO/userDto.js";
-import UserRepository from "../repository/index.js";
+import { UserRepository } from "../repository/index.js";
 import { ZodError } from 'zod';
 
 class UserController {
@@ -116,7 +116,7 @@ class UserController {
       }
 
       await UserRepository.delete(idUsuario)
-      res.status(404).json({ message: 'Usuário deletado' })
+      res.status(200).json({ message: 'Usuário deletado' })
     } catch (error) {
       return res.status(500).json({ error: 'Erro interno do servidor' })
     }
