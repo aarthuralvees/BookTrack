@@ -45,6 +45,10 @@ class UserController {
         })
       }
 
+      if (req.userId != id) {
+        return res.status(403).json({ message: "Conta não pertence ao usuário logado" })
+      }
+
       const data = {
         ...req.body
       }
@@ -71,6 +75,11 @@ class UserController {
           message: 'Usuário não encontrado',
         })
       }
+
+      if (req.userId !== user.id) {
+        return res.status(403).json({ message: "Conta não pertence ao usuário logado" })
+      }
+
       res.status(200).json(user)
 
     } catch (error) {
@@ -87,6 +96,11 @@ class UserController {
           message: 'Usuário não encontrado',
         })
       }
+
+      if (req.userId !== user.id) {
+        return res.status(403).json({ message: "Conta não pertence ao usuário logado" })
+      }
+
       res.status(200).json(user)
     } catch (error) {
       return res.status(500).json({ error: 'Erro interno do servidor' })
@@ -113,6 +127,10 @@ class UserController {
       const usuario = await UserRepository.findById(idUsuario)
       if (!usuario) {
         return res.status(404).json({ message: 'Usuário não encontrado' })
+      }
+
+      if (req.userId !== user.id) {
+        return res.status(403).json({ message: "Conta não pertence ao usuário logado" })
       }
 
       await UserRepository.delete(idUsuario)

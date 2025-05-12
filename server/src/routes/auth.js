@@ -8,7 +8,6 @@ authRouter.post('/login', async (req, res) => {
   const { email, senha } = req.body
   const user = await UserRepository.authenticate(email)
   if (user.senha !== senha) {
-    console.log(user.senha, senha)
     return res.status(401).json({ message: 'Credenciais inválidas' })
   }
 

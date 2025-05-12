@@ -4,7 +4,7 @@ class UserRepository {
   async getAll() {
     const { data, error } = await database
       .from('usuario')
-      .select('*')
+      .select('nome')
 
     if (error) throw error
     return data
@@ -59,7 +59,6 @@ class UserRepository {
   }
 
   async authenticate(email) {
-    console.log(email)
     const { data, error } = await database
       .from('usuario')
       .select('id, senha')
